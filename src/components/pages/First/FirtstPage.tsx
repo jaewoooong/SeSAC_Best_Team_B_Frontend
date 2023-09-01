@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import BoxComponent from "./List";
+import { dummyData } from "./data";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div>
-      <a>Hello World</a>
+      {dummyData.map((item, index) => (
+        <BoxComponent key={index} data={item} />
+      ))}
     </div>
   );
-}
+};
 
 export default App;
