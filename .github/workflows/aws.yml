@@ -1,4 +1,4 @@
-name: push ecr  # 이름설정
+name: push ecr  # 이름
 
 on:  # bracnch main push 감지 시 실행
   push:
@@ -14,13 +14,7 @@ jobs:
 
     - name: Check out code
       uses: actions/checkout@v2 #checkout action 사용
-
-    - name: Bump version and push tag
-      id: tag_version
-      uses: mathieudutour/github-tag-action@v5.5 # 가져다 쓸 auto tagging 프로그램
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }} # secrets.GITHUB_TOKEN 는 자동생성됨
-        
+    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -36,7 +30,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ecr-test # !!!!!!!본인의 ecr로 변경 필요!!!!!!!!
-#        IMAGE_TAG: latest
+        IMAGE_TAG: latest
       run: | # 도커 파일 빌드 후 푸쉬
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.tag_version.outputs.new_tag }} .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.tag_version.outputs.new_tag }}
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
