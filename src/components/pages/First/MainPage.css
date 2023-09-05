@@ -11,14 +11,17 @@
   font-size: 1.5vw;
   line-height: 1.5;
 }
+
 .relative {
   width: 48%;
   position: relative;
 }
+
 .left-image {
   width: 100%;
   object-fit: cover;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -26,7 +29,8 @@
   right: 0;
   bottom: 0;
   height: 97%;
-  background-color: rgba(56, 56, 56, 0.411); /* 50% 투명한 검은색 */
+  background-color: rgba(56, 56, 56, 0.411);
+  /* 50% 투명한 검은색 */
   display: flex;
   align-items: center;
   justify-content: center;
