@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BoxComponent from "./List";
+import BoxList from "./BoxList";
 import axios from "axios";
 import { Record,data } from "./data";
 
@@ -20,12 +20,23 @@ const App: React.FC = () => {
     fetchData()
   }, [])
 
+  function recordV(recordValue : string){
+    if(recordValue.length > 50 ){
+      return recordValue.slice(0,50) + '...'
+    } 
+    return recordValue
+  }
   
   return (
-    <div>
+    <div className="FirstPage">
       {data.map((item :Record, index : number) => (
-        <div className="FirstPage">
-           <BoxComponent key={item.kakaoId} data={item} />
+        <div>
+          <div className="boxBG">
+            <h3>{recordV(item.recordValue)}</h3>
+            <span>{new Date(item.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+
+          </div>
+          <BoxList key={item.kakaoId} data={item} />
         </div>
       ))}
      

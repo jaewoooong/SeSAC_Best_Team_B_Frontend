@@ -10,8 +10,8 @@ const myStyles = [
 ];
 
 const containerStyle = {
-  width: '400px',
-  height: '600px'
+  width: '100%',
+  height: '100vh'
 };
 
 interface MapProps {

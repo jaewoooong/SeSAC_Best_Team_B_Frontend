@@ -5,9 +5,7 @@ export interface IDataItem {
 
 export interface Image {
   // 이미지 관련 속성들을 정의하세요. 예를 들면:
-  url?: string;  // 이곳에 실제 속성을 추가하세요
-  createdAt?: string;
-  updatedAt?: string;
+  imageName: string
   // 여기에 다른 필요한 속성들을 추가하세요
 }
 
@@ -22,6 +20,7 @@ export interface Record {
 export interface data {
   key: string;
   data: Record; // 또는 적절한 타입을 사용합니다.
+  
 }
 
 // export const dummyData: IDataItem[] = [
