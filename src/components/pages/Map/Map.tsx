@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF, Marker, InfoWindow } from '@react-google-maps/api';
 import { DataItem } from "../data/data";
-import axios from "axios";
-
+import BoxList from "../First/BoxList";
 const myStyles = [
   {
     featureType: "poi",
@@ -10,16 +9,13 @@ const myStyles = [
     stylers: [{ visibility: "off" }],
   },
 ];
-
 const containerStyle = {
   width: '400px',
   height: '600px'
 };
-
 interface MapProps {
   data: DataItem[]
 }
-
 // 지도 초기 중심값
 const center = {
   lat: 36.586148,
@@ -27,29 +23,22 @@ const center = {
 };
 const img_src = 'https://picsum.photos/id/237/200/300';
 const zoom = 7;
-
 function Map({ data }: MapProps) {
   console.log("Map.tsx", data)
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY as string
   })
-
   const [map, setMap] = React.useState(null)
-
   const onLoad = React.useCallback(function callback(map: any) {
     const bounds = new window.google.maps.LatLngBounds(center);
     // zoom props에 맞춰서 크기 조절하기 위해 비활성화
     // map.fitBounds(bounds);
-
     setMap(map)
   }, [])
-
   const onUnmount = React.useCallback(function callback(map: any) {
     setMap(null)
   }, [])
-
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -73,6 +62,7 @@ function Map({ data }: MapProps) {
             <InfoWindow>
               <div>
                 {item.record.recordValue}
+                <BoxList key={item.record.recordId} images={item.images} record={item.record} />
               </div>
             </InfoWindow>
           </Marker>
@@ -82,5 +72,4 @@ function Map({ data }: MapProps) {
     </GoogleMap>
   ) : <></>
 }
-
 export default React.memo(Map)

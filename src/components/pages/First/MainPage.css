@@ -1,52 +1,44 @@
-.box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 45%;
-  margin: 5% auto;
-  border: 1px solid #e0e0e0;
-  padding: 3%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 1.5vw;
-  line-height: 1.5;
+.FirstPage {
+  margin: 0 auto;
+  background: url('../../../../public/images\ \(1\).jpg');
+  background-position: center;
+  height: 100%;
+  min-height: 100vh;
 }
-
-.relative {
-  width: 48%;
+.box {
+  width: 300px;
+  height: 300px;
+  background: #756969;
+  margin: 0 auto 30px auto;
+  border-radius: 20px;
+  overflow: hidden;
   position: relative;
 }
-
-.left-image {
-  width: 100%;
-  object-fit: cover;
-}
-
-.overlay {
+.boxBG {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 97%;
-  background-color: rgba(56, 56, 56, 0.411);
-  /* 50% 투명한 검은색 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7vw;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(to right, #4bbdda2c, #ff937233);
+  z-index: 10;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
   color: #fff;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-.record {
-  width: 45%;
-  text-align: left;
+.boxBG h3 {
+  line-height: 2;
+  font-family:'Courier New', Courier, monospace
 }
-
-@media (max-width: 800px) {
-  .box {
-    /* 예시: 박스의 패딩을 조절 */
-    width: 80%;
-    font-size: 2.5vw;
-  }
+.boxBG span {
+  color: #000;
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: row-reverse;
+  font-family:'Times New Roman', Times, serif;
 }
