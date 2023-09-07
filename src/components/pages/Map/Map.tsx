@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF, Marker, InfoWindow } from '@react-google-maps/api';
+import { DataItem } from "../data/data";
+import BoxList from "../First/BoxList";
 
 const myStyles = [
   {
@@ -10,20 +12,25 @@ const myStyles = [
 ];
 
 const containerStyle = {
-  width: '100%',
-  height: '100vh'
+  width: '400px',
+  height: '600px'
 };
 
 interface MapProps {
-  center: {
-    lat: number,
-    lng: number
-  };
-  zoom: number;
-  img_src: string;
+  data: DataItem[]
 }
 
-function Map({ center, zoom, img_src }: MapProps) {
+// 지도 초기 중심값
+const center = {
+  lat: 36.586148,
+  lng: 128.1867972
+};
+const img_src = 'https://picsum.photos/id/237/200/300';
+const zoom = 7;
+
+function Map({ data }: MapProps) {
+  console.log("Map.tsx", data)
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY as string
@@ -50,16 +57,28 @@ function Map({ center, zoom, img_src }: MapProps) {
       zoom={zoom}
       onLoad={onLoad}
       onUnmount={onUnmount}
-      options={{disableDefaultUI: true, styles: myStyles}}
+      options={{ disableDefaultUI: true, styles: myStyles }}
     >
       { /* Child components, such as markers, info windows, etc. */}
-      <Marker position={center} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png', scale: 5 }} >
-      <InfoWindow>
-        <div>
-          <img src={img_src} style={{ width: '100px', height: '100px' }}/>
-        </div>
-        </InfoWindow>
-      </ Marker>
+      {data?.map((item, index) => (
+        item.images.length > 0 && (
+          <Marker
+            key={index} // 고유한 키 사용 (인덱스 대신 데이터에서 고유한 식별자 사용하는 것이 좋습니다)
+            position={{
+              lat: item.images[0].GPSLatitude, // 데이터에서 가져온 위치 정보 사용
+              lng: item.images[0].GPSLongitude,
+            }}
+            icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png', scale: 5 }}
+          >
+            <InfoWindow>
+              <div>
+                {item.record.recordValue}
+                <BoxList key={item.record.recordId} images={item.images} record={item.record} />
+              </div>
+            </InfoWindow>
+          </Marker>
+        )
+      ))}
       <></>
     </GoogleMap>
   ) : <></>

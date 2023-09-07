@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Record, data } from "./data";
-import "./firstPage.css";
+import { DataItem, Image } from "../data/data";
+import "./MainPage.css";
 
-interface imgName {
-  imageName: string;
-}
-
-const BoxList: React.FC<data> = ({ data }) => {
-  const [dataImages, setDataImages] = useState<imgName[]>(data.images);
+const BoxList: React.FC<DataItem> = ({ images }) => {
+  const [dataImages, setDataImages] = useState<Image[]>(images);
+  const s3_url = process.env.REACT_APP_S3_URL;
 
   useEffect(() => {
     if (dataImages.length > 4) {
@@ -15,21 +12,21 @@ const BoxList: React.FC<data> = ({ data }) => {
     }
   }, [dataImages]);
 
-  function renderComponent(imgSrc: string) {
+  function imageComponent(imgSrc: string) {
     let width = "100%";
     let height = "100%";
-  
-    if (data.images.length >= 4) {
+
+    if (dataImages.length >= 4) {
       width = "50%";
       height = "50%";
-    } else if (data.images.length === 3) {
+    } else if (dataImages.length === 3) {
       width = "100%";
       height = "33.3%";
-    } else if (data.images.length === 2) {
+    } else if (dataImages.length === 2) {
       width = "100%";
       height = "50%";
     }
-  
+
     return <img src={imgSrc} style={{ width, height }} key={imgSrc} alt="" />;
   }
 
@@ -37,8 +34,8 @@ const BoxList: React.FC<data> = ({ data }) => {
 
   return (
     <div className="box">
-      {dataImages.map((img: imgName) => (
-        renderComponent(img.imageName)
+      {dataImages.map((image) => (
+        imageComponent(`${s3_url}/${image.imageName}`)
       ))}
     </div>
   );
