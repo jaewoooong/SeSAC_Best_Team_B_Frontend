@@ -1,4 +1,4 @@
-import FirstPage from "./components/pages/First/FirtstPage";
+import MainPage from "./components/pages/First/MainPage";
 import LoginPage from "./components/pages/Login/LoginPage";
 import MapPage from './components/pages/Map/MapPage'
 import TimelinePage from './components/pages/Timeline/TimelinePage'
@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* 첫 페이지 */}
-        <Route path="/" element={<FirstPage />} />
+        <Route path="/" element={<MainPage />} />
         {/* 로그인 페이지 */}
         <Route path="/login" element={<LoginPage />} /> 
         {/* 지도 페이지 */}

@@ -1,44 +1,38 @@
 import Timeline from './Timeline';
+import { DataItem } from "../data/data"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function TimelinePage() {
-    const items = [
-        {
-          title: "2023 09 01",
-          cardSubtitle: "article....",
-          media: {
-            type: "IMAGE",
-            source: {
-              url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68"
-            }
-          }
-        },
-        {
-          title: "2023 09 01",
-          cardSubtitle: "article....",
-          media: {
-            type: "IMAGE",
-            source: {
-              url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68"
-            }
-          }
-        },
-        {
-          title: "2023 09 01",
-          cardSubtitle: "article....",
-          media: {
-            type: "IMAGE",
-            source: {
-              url: "https://fastly.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68"
-            }
-          }
-        }
-      ];
+  const [data, setData] = useState<DataItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    return (
-        <div>
-            <Timeline items={items} />
-        </div>
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/main")
+        console.log(res.data)
+        setData(res.data)
+        setLoading(false); // 데이터를 성공적으로 받아왔으므로 로딩 상태 변경
+      } catch (error) {
+        console.log("데이터 가져오기 오류", error)
+        setLoading(false); // 데이터를 받아오는 중 오류가 발생하더라도 로딩 상태 변경
+      }
+    };
+
+    fetchData();
+  }, [])
+
+  // 로딩 중일 때 로딩 표시
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <Timeline data={data} />
+    </div>
+  );
 }
 
 export default TimelinePage;
