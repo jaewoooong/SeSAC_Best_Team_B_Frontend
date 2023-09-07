@@ -11,7 +11,6 @@ import { useState } from "react";
 // axios.defaults.baseURL = process.env.REACT_APP_URL;
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
-
 function App() {
   const [uploadState, setUploadState] = useState<boolean>(false);
   return (
@@ -20,18 +19,15 @@ function App() {
         {/* 첫 페이지 */}
         <Route path="/" element={<MainPage />} />
         {/* 로그인 페이지 */}
-        <Route path="/login" element={<LoginPage />} /> 
+        <Route path="/login" element={<LoginPage />} />
         {/* 지도 페이지 */}
         <Route path='/map' element={<MapPage />} />
         {/* 타임라인 페이지 */}
         <Route path='/timeline' element={<TimelinePage />} />
       </Routes>
-
       <Footer setUploadState={setUploadState} />
-      
       {uploadState && <UploadComponent />}
     </BrowserRouter>
   );
 }
-
 export default App;

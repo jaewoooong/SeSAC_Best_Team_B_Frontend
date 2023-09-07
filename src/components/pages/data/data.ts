@@ -22,7 +22,7 @@ export interface DataItem {
 //   },
 //   images: [
 //     {
-//       imageName: 1693986455340-20230829_152711.jpg,
+//       imageName: 1693986455340-20230829_152711.jpg,n
 //       GPSLatitude: 37.5179,
 //       GPSLongitude: 126.886,
 //       CreateDate: "2023-08-29T15:27:12.000Z",

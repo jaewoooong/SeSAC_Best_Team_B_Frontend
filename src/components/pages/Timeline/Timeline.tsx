@@ -1,7 +1,6 @@
 import React from "react"
 import { Chrono } from "react-chrono";
 import { DataItem } from "../data/data";
-
 interface item {
   title: string;
   cardSubtitle: string;
@@ -12,11 +11,9 @@ interface item {
     };
   };
 }
-
 interface TimelineProps {
   data: DataItem[];
 }
-
 function formatDateTime(dateTimeString: string) {
   const parsedDate = new Date(dateTimeString);
   const year = parsedDate.getFullYear();
@@ -24,10 +21,8 @@ function formatDateTime(dateTimeString: string) {
   const day = String(parsedDate.getDate()).padStart(2, '0');
   const hours = String(parsedDate.getHours()).padStart(2, '0');
   const minutes = String(parsedDate.getMinutes()).padStart(2, '0');
-
   return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
-
 function Timeline({ data }: TimelineProps) {
   const s3_url = process.env.REACT_APP_S3_URL;
   const transformedData = data.map((item) => ({
@@ -40,12 +35,10 @@ function Timeline({ data }: TimelineProps) {
       },
     },
   }));
-
   return (
     <div style={{ width: "400px" }}>
       <Chrono items={transformedData} mode="VERTICAL" />
     </div>
   )
 }
-
 export default Timeline;

@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import BoxList from "./BoxList";
 import axios from "axios";
 import { DataItem } from "../data/data";
-
 const MainPage: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
   const [error, setError] = useState(null as any);
   console.log('data 9', data)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,17 +15,14 @@ const MainPage: React.FC = () => {
         setError(error);
       }
     };
-
     fetchData()
   }, [])
-
   function recordV(recordValue: string) {
     if (recordValue.length > 50) {
       return recordValue.slice(0, 50) + '...'
     }
     return recordValue
   }
-
   function formatDateTime(dateTimeString: string) {
     const parsedDate = new Date(dateTimeString);
     const year = parsedDate.getFullYear();
@@ -35,10 +30,8 @@ const MainPage: React.FC = () => {
     const day = String(parsedDate.getDate()).padStart(2, '0');
     const hours = String(parsedDate.getHours()).padStart(2, '0');
     const minutes = String(parsedDate.getMinutes()).padStart(2, '0');
-
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
-
   return (
     <div className="FirstPage">
       {data.map((item, index) => (
@@ -53,5 +46,4 @@ const MainPage: React.FC = () => {
     </div>
   );
 };
-
 export default MainPage;
