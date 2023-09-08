@@ -10,7 +10,7 @@ function TimelinePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/main")
+        const res = await axios.get("/main")
         console.log(res.data)
         setData(res.data)
         setLoading(false); // 데이터를 성공적으로 받아왔으므로 로딩 상태 변경

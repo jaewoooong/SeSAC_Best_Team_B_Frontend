@@ -8,9 +8,10 @@ import axios from 'axios';
 import "./App.css"
 import Footer from "./components/pages/common/Footer";
 import { useState } from "react";
-// axios.defaults.baseURL = process.env.REACT_APP_URL;
-axios.defaults.baseURL = 'http://localhost:5000';
+// axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND;
 axios.defaults.withCredentials = true;
+
 function App() {
   const [uploadState, setUploadState] = useState<boolean>(false);
   return (
