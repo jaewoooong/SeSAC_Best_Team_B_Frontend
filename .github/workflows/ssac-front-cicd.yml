@@ -1,65 +1,71 @@
-name: ssac-front
+#frontend repositoy
+name: ssac-front 
 
-on:  # bracnch main push 감지 시 실행
+# bracnch main push 감지 시 실행
+on:  
   push:
     branches: [ main ]
 
 jobs:
   ci:   
+    # ubuntu에서 실행
     name: Build Image
-    runs-on: ubuntu-latest # ubuntu에서 실행
+    runs-on: ubuntu-latest 
 
    
     steps:
-
+    #checkout action 사용
     - name: Check out code
-      uses: actions/checkout@v2 #checkout action 사용
-        
+      uses: actions/checkout@v2 
+      
+    #AWS 인증에 필요한 access key code 입력하는 action, secret 값은 setting에서 환경변수처리
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
         aws-region: us-east-2 # ecr이 위치하는 리전
 
+   #AWS ECR 로그인
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-#    - name: Get image tag(verion)
-#      id: image
-#      run: |
-#        VERSION=$(echo \${{ github.sha }} | cut -c1-8)
-#        echo VERSION=$VERSION
-#        echo "::set-output name=version::$VERSION"
-
+   # tag 자동 증가, 그 전 tag를 확인하여 +0.0.1없으면 v0.0.1에서 시작
+   # Github token 값 필요
     - name: Bump version and push tag
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.1
       with:
         github_token: ${{ secrets.TOKEN }}
 
+   # 이미지 빌드 후 ecr push
+   # env 값으로 ECR의 registry, repository, Imagetag 추가
+   # 실습 시 repository 변경
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ssac-front # !!!!!!!본인의 ecr로 변경 필요!!!!!!!!
+        ECR_REPOSITORY: ssac-front 
         IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
-      run: | # 도커 파일 빌드 후 푸쉬
+      run: | 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-      
+
+    # kubernetes yaml 파일이 있는 repositroy checkout
+    # ref: branch
+    # token: github token
+    # path: repository와 동일하게 설정
     - name: Checkout for Kustomize repository
       uses: actions/checkout@v2
-      with:
-           # kubernetes yaml 파일 저장
+      with: 
             repository: Jeon-Min-seok/argo-cd # k8s yaml 파일이 있는 repo
             ref: main  # branch 이름
             token: ${{ secrets.TOKEN }}
-            path: argo-cd # 최상위 경로로 repository와 동일하게 설정
+            path: argo-cd 
 
-        # 새 이미지 버전으로 파일의 태그값 수정
-        # cd path 수정
-        # kustomize 로 image tag 값 변경
+    # 새 이미지 버전으로 파일의 태그값 수정
+    # cd path 수정
+    # kustomize 로 image tag 값 변경
     - name: Update Kubernetes resources
       run: |
         pwd
@@ -67,7 +73,7 @@ jobs:
         kustomize edit set image ${{ steps.login-ecr.outputs.registry }}/ssac-front=${{ steps.login-ecr.outputs.registry }}/ssac-front:${{ steps.tag_version.outputs.new_tag }}
         cat kustomization.yaml
 
-        # 수정된 kustomization.yaml 파일 commit push
+   # 수정된 kustomization.yaml 파일 commit push
     - name: Commit manifest files
       run: |
         cd argo-cd
