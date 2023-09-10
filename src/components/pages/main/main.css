@@ -1,0 +1,333 @@
+/* common */
+.background {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 50px;
+  /* background: #6212cc5d; */
+  background: #6e59a2;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.Pagelayout {
+  background: radial-gradient(circle at center, #94609c 0%, #0b0f2f 60%);
+  /* background: radial-gradient(circle at center, #4f0d8d, #0b0c2b); */
+  min-width: 600px;
+  max-width: 1400px;
+  width: 100%;
+  height: 85%;
+  border-radius: 50px;
+  display: flex;
+}
+/* mainpage */
+.mainPage {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+}
+.middle {
+  padding: 20px;
+  width: 75%;
+  height: 100%;
+  overflow-y: scroll;
+  /* overflow-x: scroll; */
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* 스크롤바를 투명하게 만듭니다 */
+}
+
+.mainPage .middle header {
+  /* width: 100%; */
+  /* padding: 20px; */
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.mainPage .middle .roomList {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+}
+.mainPage .middle .roomList li {
+  margin-top: 20px;
+  width: 31.6%;
+  margin: 1.66% 0.8% 1.66% 0.8%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff0e;
+  border-radius: 20px;
+  padding-top: 20px;
+  transition: transform, 0.7s, background-color 0.7s; /* 애니메이션 시간 설정 */
+}
+.mainPage .middle .roomList li:hover {
+  transform: translate(-50px, -50px) rotate(-8deg) scale(1.1); /* 이동, 회전, 확대 효과 적용 */
+  background-color: #6e59a4;
+}
+.mainPage .middle .roomList li div:nth-child(1) {
+  position: relative;
+}
+.mainPage .middle .roomList li div:nth-child(1) span {
+  position: absolute;
+  top: -15px;
+  right: -3vw;
+  font-size: 24px;
+  /* color: #df3f7f; */
+  color: #ca5684;
+  font-weight: 650;
+}
+.mainPage .middle .roomList li div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mainPage .middle .roomList li div h2 {
+  font-size: 22px;
+}
+.mainPage .middle .roomList li div h3 {
+  font-size: 14px;
+  color: #ffbb47;
+}
+.mainPage .middle .roomList li div h4 {
+  font-size: 18px;
+}
+.mainPage .middle .roomList li div:nth-of-type(3) {
+  padding: 12px 10px;
+  background: #ffffff15;
+  color: #ffffff6c;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  overflow: hidden; /* 이 부분이 div 밖으로 내용이 나가지 않게 합니다 */
+  white-space: nowrap; /* 이 부분이 내용이 한 줄로 유지되게 합니다 */
+}
+.mainPage .middle .roomList li div:nth-of-type(3) span {
+  display: inline-block;
+  animation: marquee 30s linear infinite; /* 5초 동안 애니메이션을 반복합니다 */
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(500%);
+  }
+}
+
+.mainPage .middle .roomList img {
+  width: 100px;
+  height: 100px;
+  /* background: #ffc14be8; */
+  background: #ffbb47;
+  /* clip-path: polygon(15% 12%, 90% 0%, 100% 100%, 0% 100%);
+  border-radius: 14px; */
+
+  /* 
+  clip-path: polygon(10% 0%, 100% 0%, 100% 85%, 0% 100%);
+  border-radius: 14px 14px 20px 14px; */
+
+  clip-path: polygon(3% 0%, 100% 0%, 100% 90%, 0% 100%);
+  border-radius: 14px 14px 20px 14px;
+}
+/* mainpage에 header start*/
+.mainPage .search-container {
+  position: relative;
+  width: 200px;
+}
+
+.search-input {
+  width: 50%;
+  padding: 10px;
+  padding-left: 40px; /* 돋보기 아이콘과 텍스트 간에 공간을 만듭니다 */
+  border: 1px solid #00000027;
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out; /* 애니메이션 효과 */
+  background: #00000027;
+  font-weight: 800;
+  color: #fff;
+}
+
+.search-input:focus {
+  width: 80%; /* 포커스 시 입력 필드를 확장합니다 */
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+/* mainpage에 header end*/
+
+.rightside {
+  width: 25%;
+  height: 100%;
+  /* background: #000; */
+  border-radius: 0 50px 50px 0;
+}
+
+.rightside > div:nth-child(1) {
+  height: 40%;
+  background: #ffbb47;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500"><path d="M0 100 Q250 0, 500 100" stroke="white" fill="transparent"/><path d="M0 250 Q250 150, 500 250" stroke="white" fill="transparent"/><path d="M0 400 Q250 300, 500 400" stroke="white" fill="transparent"/></svg>'),
+    #ffbb47;
+  background-size: cover;
+  border-radius: 0 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.rightside > div:nth-child(1) > div {
+  display: flex;
+  justify-content: center;
+}
+.rightside div:nth-child(1) .graph_Rank {
+  display: flex;
+  align-items: flex-end;
+}
+.rightside div:nth-child(1) .graph_Rank > div {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+.rightside .graph_Rank > div > div {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rightside > div > div > h3 {
+  width: 60px;
+  margin-top: 10px;
+  color: #000;
+  font-weight: 800;
+}
+.rightside div:nth-child(1) .graph_Rank div svg {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -20px;
+  right: 50%;
+  transform: translate(50%);
+  fill: #ff76af;
+}
+.rightside div:nth-child(1) .graph_Rank div text {
+  z-index: 1;
+}
+
+.rank1 {
+  height: 200px;
+  background-image: linear-gradient(90deg, #161a39 20%, #161a39 80%);
+}
+.rank2 {
+  height: 150px;
+  background-image: linear-gradient(90deg, #302a4e 10%, #161a39 90%);
+}
+
+.rank3 {
+  height: 100px;
+  background-image: linear-gradient(90deg, #161a39 20%, #161a39 100%);
+}
+.rank4_10 {
+  padding: 10px;
+}
+.rank4_10 > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.rank4_10 svg {
+  fill: #ffffff21;
+}
+.rightside div:nth-child(1) .graph_Rank div:nth-child(1) {
+  display: flex;
+}
+.rightside > div:nth-child(2) {
+  background: #ffffff0c;
+  height: 60%;
+}
+.graph_Rank img {
+  background: #ffbb47;
+  border-radius: 5px;
+}
+
+/* side bar */
+aside {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff07;
+  border-radius: 50px 0 0 50px;
+}
+
+aside a {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.3vw;
+  position: relative;
+}
+
+aside a .menu {
+  width: 30px;
+  height: 30px;
+  padding: 13px 17px;
+  clip-path: polygon(20% 10%, 80% 0%, 90% 100%, 0% 100%);
+  transition: transform 0.5s, background-color 0.5s; /* 애니메이션 속도 설정 */
+  border-radius: 30px 30px 30px 20px;
+  margin: 10px 0;
+}
+aside a:hover .menu {
+  transform: scale(1.2); /* 아이콘 크기 확대 */
+  background-color: #ffffff10; /* 배경색 변경, 원하는 색상 코드로 교체하세요 */
+}
+aside a:nth-child(1) .menu {
+  width: 40px;
+  height: 40px;
+  margin: 30px 0 70px 0;
+}
+@media screen and (max-width: 1200px) {
+  .mainPage .middle .roomList li {
+    width: 48%;
+    margin: 2% 1% 2% 1%;
+  }
+  .mainPage .middle .roomList li div:nth-child(1) span {
+    right: -6vw;
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 880px) {
+  .mainPage .middle .roomList li {
+    width: 85%;
+    margin: 15% auto 0% auto;
+  }
+  .rightside > div:nth-child(1) {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .background {
+    display: block;
+    padding: 0;
+    /* width: 100%; */
+  }
+  .Pagelayout {
+    /* width: 100%; */
+    min-width: 300px;
+    border-radius: 0;
+    height: 100%;
+  }
+}
