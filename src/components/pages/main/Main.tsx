@@ -11,17 +11,25 @@ const Main: React.FC = () => {
       <div className="Pagelayout">
         <aside>
           <Link to="/">
-            <img className="menu" src="./Home.png" alt="" />
+            <img src="./Home.png" alt="" />
           </Link>
           <Link to="/map">
-            <img className="menu" src="./earth.png" alt="" />
-            <span>settings</span>
+            <div className="menu">
+              <img src="./earth.png" alt="" />
+              <span>settings</span>
+            </div>
           </Link>
           <Link to="/timeline">
-            <img className="menu" src="./Image.png" alt="" />
+            <div className="menu">
+              <img src="./Image.png" alt="" />
+              <span>asd</span>
+            </div>
           </Link>
           <Link to="/login">
-            <img className="menu" src="./Settings.png" alt="" />
+            <div className="menu">
+              <img src="./Settings.png" alt="" />
+              <span>settings</span>
+            </div>
           </Link>
         </aside>
 

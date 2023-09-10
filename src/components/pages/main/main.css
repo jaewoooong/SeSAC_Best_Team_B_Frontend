@@ -114,10 +114,10 @@
 }
 @keyframes marquee {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-120%);
   }
   100% {
-    transform: translateX(500%);
+    transform: translateX(600%);
   }
 }
 
@@ -274,23 +274,37 @@ aside {
 }
 
 aside a {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   margin-bottom: 0.3vw;
-  position: relative;
+  position: relative; */
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
-
+aside a:first-child {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
 aside a .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  padding: 10px 0;
+  color: #fff;
+  /* padding: 13px 17px; */
+  clip-path: polygon(20% 10%, 80% 0%, 90% 100%, 0% 100%);
+  transition: transform 0.1s, background-color 0.4s; /* 애니메이션 속도 설정 */
+  border-radius: 30px 30px 30px 20px;
+  margin: 5px auto;
+}
+aside a img {
   width: 30px;
   height: 30px;
-  padding: 13px 17px;
-  clip-path: polygon(20% 10%, 80% 0%, 90% 100%, 0% 100%);
-  transition: transform 0.5s, background-color 0.5s; /* 애니메이션 속도 설정 */
-  border-radius: 30px 30px 30px 20px;
-  margin: 10px 0;
 }
-aside a:hover .menu {
-  transform: scale(1.2); /* 아이콘 크기 확대 */
+
+aside a > div:hover {
   background-color: #ffffff10; /* 배경색 변경, 원하는 색상 코드로 교체하세요 */
 }
 aside a:nth-child(1) .menu {
