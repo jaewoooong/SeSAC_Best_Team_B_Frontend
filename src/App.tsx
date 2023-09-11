@@ -1,5 +1,6 @@
 import MainPage from "./components/pages/First/MainPage";
-import LoginPage from "./components/pages/Login/LoginPage";
+// import LoginPage from "./components/pages/Login/LoginPage";
+import LoginPage from "./components/pages/main/Login";
 import Main from "./components/pages/main/Main";
 import MapPage from "./components/pages/Map/MapPage";
 import TimelinePage from "./components/pages/Timeline/TimelinePage";
@@ -9,8 +10,8 @@ import axios from "axios";
 import "./App.css";
 import Footer from "./components/pages/common/Footer";
 import { useState } from "react";
-// axios.defaults.baseURL = 'http://localhost:5000';
-axios.defaults.baseURL = process.env.REACT_APP_BACKEND;
+// axios.defaults.baseURL = "http://localhost:5000";
+// axios.defaults.baseURL = process.env.REACT_APP_BACKEND;
 axios.defaults.withCredentials = true;
 
 function App() {

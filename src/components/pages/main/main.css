@@ -1,4 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;600&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;600&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Kanit:ital,wght@1,300&family=Oswald:wght@300;400;600&family=Roboto:wght@100&display=swap");
+
+:root {
+  --right_sidebar_width: 280px;
+  --mobile_layout_width: 96%;
+}
 /* common */
+p {
+  margin: 0;
+}
+.under_1200px {
+  display: none !important;
+}
 .background {
   /* width: 100%; */
   display: flex;
@@ -8,7 +22,8 @@
   padding: 0 50px;
   /* background: #6212cc5d; */
   background: #6e59a2;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+  font-family: "Kanit";
 }
 .Pagelayout {
   background: radial-gradient(circle at center, #94609c 0%, #0b0f2f 60%);
@@ -19,6 +34,7 @@
   height: 85%;
   border-radius: 50px;
   display: flex;
+  overflow: hidden;
 }
 /* mainpage */
 .mainPage {
@@ -29,7 +45,7 @@
 }
 .middle {
   padding: 20px;
-  width: 75%;
+  width: calc(100% - var(--right_sidebar_width));
   height: 100%;
   overflow-y: scroll;
   /* overflow-x: scroll; */
@@ -43,15 +59,26 @@
   /* width: 100%; */
   /* padding: 20px; */
   display: flex;
+  flex-wrap: wrap;
   height: 50px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
+.header_btn_box {
+  width: 100%;
+  direction: rtl;
+  margin-right: 10px;
+}
+.logland {
+  font-size: 30px;
+  font-weight: 700;
+}
 .mainPage .middle .roomList {
   display: flex;
   /* justify-content: space-between; */
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 .mainPage .middle .roomList li {
   margin-top: 20px;
@@ -66,34 +93,41 @@
   border-radius: 20px;
   padding-top: 20px;
   transition: transform, 0.7s, background-color 0.7s; /* 애니메이션 시간 설정 */
+  position: relative;
 }
 .mainPage .middle .roomList li:hover {
   transform: translate(-50px, -50px) rotate(-8deg) scale(1.1); /* 이동, 회전, 확대 효과 적용 */
   background-color: #6e59a4;
 }
 .mainPage .middle .roomList li div:nth-child(1) {
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .mainPage .middle .roomList li div:nth-child(1) span {
   position: absolute;
-  top: -15px;
-  right: -3vw;
-  font-size: 24px;
+  top: 8px;
+  right: 10px;
+  font-size: 20px;
   /* color: #df3f7f; */
   color: #ca5684;
   font-weight: 650;
 }
 .mainPage .middle .roomList li div:nth-child(2) {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 80%;
+  justify-content: center;
 }
-.mainPage .middle .roomList li div h2 {
-  font-size: 22px;
+.mainPage .middle .roomList li .name {
+  font-size: 18px;
+  margin: 3px;
+  text-align: center;
 }
-.mainPage .middle .roomList li div h3 {
+.mainPage .middle .roomList li .relationship {
   font-size: 14px;
   color: #ffbb47;
+  text-align: center;
 }
 .mainPage .middle .roomList li div h4 {
   font-size: 18px;
@@ -122,8 +156,8 @@
 }
 
 .mainPage .middle .roomList img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   /* background: #ffc14be8; */
   background: #ffbb47;
   /* clip-path: polygon(15% 12%, 90% 0%, 100% 100%, 0% 100%);
@@ -140,6 +174,14 @@
 .mainPage .search-container {
   position: relative;
   width: 200px;
+}
+.header_btn_box button {
+  background: #ca5684;
+  border: 1px solid #ca5684;
+  padding: 8px 15px;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
 }
 
 .search-input {
@@ -169,7 +211,7 @@
 /* mainpage에 header end*/
 
 .rightside {
-  width: 25%;
+  width: var(--right_sidebar_width);
   height: 100%;
   /* background: #000; */
   border-radius: 0 50px 50px 0;
@@ -212,6 +254,10 @@
   color: #000;
   font-weight: 800;
 }
+.rightside_title {
+  text-align: center;
+  padding: 20px 30px;
+}
 .rightside div:nth-child(1) .graph_Rank div svg {
   width: 40px;
   height: 40px;
@@ -224,14 +270,16 @@
 .rightside div:nth-child(1) .graph_Rank div text {
   z-index: 1;
 }
-
+.mainPage .middle .roomList li div:nth-child(2) span {
+  display: none;
+}
 .rank1 {
   height: 200px;
   background-image: linear-gradient(90deg, #161a39 20%, #161a39 80%);
 }
 .rank2 {
   height: 150px;
-  background-image: linear-gradient(90deg, #302a4e 10%, #161a39 90%);
+  background-image: linear-gradient(90deg, #222142 25%, #161a39 90%);
 }
 
 .rank3 {
@@ -249,6 +297,9 @@
 }
 .rank4_10 svg {
   fill: #ffffff21;
+}
+.rank4_10 .rank1_3 {
+  display: none;
 }
 .rightside div:nth-child(1) .graph_Rank div:nth-child(1) {
   display: flex;
@@ -270,9 +321,18 @@ aside {
   flex-direction: column;
   justify-content: center;
   background: #ffffff07;
-  border-radius: 50px 0 0 50px;
 }
-
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+}
+.hamburger-menu .line {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 0.4s;
+}
 aside a {
   /* display: flex;
   justify-content: center;
@@ -312,36 +372,154 @@ aside a:nth-child(1) .menu {
   height: 40px;
   margin: 30px 0 70px 0;
 }
-@media screen and (max-width: 1200px) {
-  .mainPage .middle .roomList li {
-    width: 48%;
-    margin: 2% 1% 2% 1%;
-  }
-  .mainPage .middle .roomList li div:nth-child(1) span {
-    right: -6vw;
-    font-size: 24px;
+@media screen and (max-width: 1400px) {
+  .rank2 {
+    background-image: linear-gradient(90deg, #2b274a 25%, #161a39 90%);
   }
 }
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1200px) {
+  :root {
+    --right_sidebar_width: 160px;
+  }
+  .under_1200px {
+    display: block !important;
+  }
   .mainPage .middle .roomList li {
+    width: 46%;
+    margin: 2%;
+  }
+  .mainPage .middle .roomList li div:nth-child(1) span {
+    font-size: 18px;
+  }
+  .rightside > div:nth-child(1) {
+    display: none;
+  }
+  .rightside > div:nth-child(2) {
+    height: 100%;
+  }
+  .rank4_10 > div {
+    height: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .rank4_10 svg {
+    width: 14px;
+    height: 14px;
+  }
+  .rank4_10 .under_1200px {
+    display: flex !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --right_sidebar_width: 0;
+  }
+  /* .mainPage .middle .roomList li {
     width: 85%;
     margin: 15% auto 0% auto;
   }
   .rightside > div:nth-child(1) {
     border-radius: 0;
+  } */
+  .mainPage .middle .roomList li div:nth-child(2) {
+    justify-content: space-between;
   }
-}
-
-@media screen and (max-width: 880px) {
   .background {
     display: block;
     padding: 0;
-    /* width: 100%; */
   }
   .Pagelayout {
-    /* width: 100%; */
     min-width: 300px;
     border-radius: 0;
     height: 100%;
+  }
+  .rightside {
+    display: none;
+  }
+  .mainPage .middle .roomList {
+    justify-content: center;
+  }
+  .mainPage .middle .roomList li {
+    width: var(--mobile_layout_width);
+    min-width: 280px;
+  }
+  .mainPage .middle .roomList li div:nth-child(1) {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    align-items: start;
+  }
+  .mainPage .middle .roomList li div:nth-child(1) span {
+    display: none;
+  }
+  .mainPage .middle .roomList li .list_user_info {
+    display: flex;
+    margin-left: 10%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .mainPage .middle .roomList li .name {
+    margin-top: 20px;
+    text-align: left;
+  }
+  .mainPage .middle .roomList li .relationship {
+    text-align: left;
+  }
+  .mainPage .middle .roomList li div:nth-child(2) span {
+    display: block;
+    font-size: 24px;
+    /* color: #df3f7f; */
+    color: #ca5684;
+    font-weight: 650;
+  }
+
+  aside {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+  }
+  aside > div {
+    width: 100px;
+    margin: 0 auto;
+  }
+  .hamburger-menu {
+    display: inline-block;
+  }
+  .header_btn_box {
+    width: auto;
+  }
+  .mainPage .middle header {
+    width: var(--mobile_layout_width);
+    margin: 0 auto;
+  }
+  .mainPage .middle header > h2,
+  .mainPage .search-container {
+    display: none;
+  }
+  .close-button {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto 0;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .close-button:before,
+  .close-button:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 2px;
+    background-color: #fff;
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .close-button:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }

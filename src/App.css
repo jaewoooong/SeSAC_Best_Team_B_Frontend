@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;600&family=Roboto:wght@100&display=swap");
 #root {
   width: 100%;
 }
-
+body {
+  font-family: "Roboto", sans-serif;
+}
 /* #root > div > div {
   margin: 0 auto;
 } */
@@ -59,7 +62,6 @@ h5 video {
 }
 /* HTML5 display-role reset for older browsers */
 article,
-aside,
 details,
 figcaption,
 figure,
