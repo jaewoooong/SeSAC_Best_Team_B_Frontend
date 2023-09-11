@@ -64,43 +64,43 @@ jobs:
 
    #SLACK 연동
    #Webhook url 필수
-   # - name: action-slack
-   #   uses: 8398a7/action-slack@v3
-   #   with:
-   #     status: ${{ job.status }}
-   #     fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest 
-   #     if_mention: failure,cancelled
-   #   env:
-   #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-   #   if: always() # Pick up events even if the job fails or is canceled.
+    - name: action-slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest 
+        if_mention: failure,cancelled
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      if: always() # Pick up events even if the job fails or is canceled.
 
     # kubernetes yaml 파일이 있는 repositroy checkout
     # ref: branch
     # token: github token
     # path: repository와 동일하게 설정
-    #- name: Checkout for Kustomize repository
-     # uses: actions/checkout@v2
-     # with: 
-     #       repository: Jeon-Min-seok/argo-cd # k8s yaml 파일이 있는 repo
-     #       ref: main  # branch 이름
-     #       token: ${{ secrets.TOKEN }}
-    #        path: argo-cd 
+    - name: Checkout for Kustomize repository
+      uses: actions/checkout@v2
+      with: 
+            repository: Jeon-Min-seok/argo-cd # k8s yaml 파일이 있는 repo
+            ref: main  # branch 이름
+            token: ${{ secrets.TOKEN }}
+            path: argo-cd 
 
     # 새 이미지 버전으로 파일의 태그값 수정
     # cd path 수정
     # kustomize 로 image tag 값 변경
-   # - name: Update Kubernetes resources
-   #   run: |
-   #     pwd
-   #     cd argo-cd/overlays/dev
-   #     kustomize edit set image ${{ steps.login-ecr.outputs.registry }}/ssac-front=${{ steps.login-ecr.outputs.registry }}/ssac-front:${{ steps.tag_version.outputs.new_tag }}
-   #     cat kustomization.yaml
+    - name: Update Kubernetes resources
+      run: |
+        pwd
+        cd argo-cd/overlays/dev
+        kustomize edit set image ${{ steps.login-ecr.outputs.registry }}/ssac-front=${{ steps.login-ecr.outputs.registry }}/ssac-front:${{ steps.tag_version.outputs.new_tag }}
+        cat kustomization.yaml
 
    # 수정된 kustomization.yaml 파일 commit push
-   # - name: Commit manifest files
-   #   run: |
-   #     cd argo-cd
-   #     git config --global user.email "jeonms216@gmail.com"
-   #     git config --global user.name "Jeon-Min-seok"
-   #     git commit -am "Update image tag"
-   #     git push -u origin main
+    - name: Commit manifest files
+      run: |
+        cd argo-cd
+        git config --global user.email "jeonms216@gmail.com"
+        git config --global user.name "Jeon-Min-seok"
+        git commit -am "Update image tag"
+        git push -u origin main
