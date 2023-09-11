@@ -80,7 +80,7 @@ p {
   flex-wrap: wrap;
   margin-top: 30px;
 }
-.mainPage .middle .roomList li {
+.mainPage .middle .roomList a {
   margin-top: 20px;
   width: 31.6%;
   margin: 1.66% 0.8% 1.66% 0.8%;
@@ -94,18 +94,20 @@ p {
   padding-top: 20px;
   transition: transform, 0.7s, background-color 0.7s; /* 애니메이션 시간 설정 */
   position: relative;
+  text-decoration: none;
+  color: #fff;
 }
-.mainPage .middle .roomList li:hover {
+.mainPage .middle .roomList a:hover {
   transform: translate(-50px, -50px) rotate(-8deg) scale(1.1); /* 이동, 회전, 확대 효과 적용 */
   background-color: #6e59a4;
 }
-.mainPage .middle .roomList li div:nth-child(1) {
+.mainPage .middle .roomList a div:nth-child(1) {
   /* position: relative; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.mainPage .middle .roomList li div:nth-child(1) span {
+.mainPage .middle .roomList a div:nth-child(1) span {
   position: absolute;
   top: 8px;
   right: 10px;
@@ -114,25 +116,25 @@ p {
   color: #ca5684;
   font-weight: 650;
 }
-.mainPage .middle .roomList li div:nth-child(2) {
+.mainPage .middle .roomList a div:nth-child(2) {
   display: flex;
   width: 80%;
   justify-content: center;
 }
-.mainPage .middle .roomList li .name {
+.mainPage .middle .roomList a .name {
   font-size: 18px;
   margin: 3px;
   text-align: center;
 }
-.mainPage .middle .roomList li .relationship {
+.mainPage .middle .roomList a .relationship {
   font-size: 14px;
   color: #ffbb47;
   text-align: center;
 }
-.mainPage .middle .roomList li div h4 {
+.mainPage .middle .roomList a div h4 {
   font-size: 18px;
 }
-.mainPage .middle .roomList li div:nth-of-type(3) {
+.mainPage .middle .roomList a div:nth-of-type(3) {
   padding: 12px 10px;
   background: #ffffff15;
   color: #ffffff6c;
@@ -142,7 +144,7 @@ p {
   overflow: hidden; /* 이 부분이 div 밖으로 내용이 나가지 않게 합니다 */
   white-space: nowrap; /* 이 부분이 내용이 한 줄로 유지되게 합니다 */
 }
-.mainPage .middle .roomList li div:nth-of-type(3) span {
+.mainPage .middle .roomList a div:nth-of-type(3) span {
   display: inline-block;
   animation: marquee 30s linear infinite; /* 5초 동안 애니메이션을 반복합니다 */
 }
@@ -160,16 +162,22 @@ p {
   height: 110px;
   /* background: #ffc14be8; */
   background: #ffbb47;
-  /* clip-path: polygon(15% 12%, 90% 0%, 100% 100%, 0% 100%);
-  border-radius: 14px; */
 
-  /* 
-  clip-path: polygon(10% 0%, 100% 0%, 100% 85%, 0% 100%);
-  border-radius: 14px 14px 20px 14px; */
 
-  clip-path: polygon(3% 0%, 100% 0%, 100% 90%, 0% 100%);
   border-radius: 14px 14px 20px 14px;
 }
+.mainPage .middle .roomList .img1 {
+  clip-path: polygon(12% 5%, 100% 0%, 100% 100%, 0% 100%);
+  border-radius: 37px 14px 14px 16px;
+}
+.mainPage .middle .roomList .img2 {
+  clip-path: polygon(0% 0%, 100% 0%, 93% 90%, 0% 100%);
+    border-radius: 14px 14px 37px 16px;
+}
+.mainPage .middle .roomList .img3 {
+  border-radius: 24px 24px 24px 24px;
+}
+
 /* mainpage에 header start*/
 .mainPage .search-container {
   position: relative;
@@ -236,6 +244,12 @@ p {
   display: flex;
   align-items: flex-end;
 }
+.rightside div:nth-child(1) .graph_Rank h3 {
+  font-size: 13px;
+  margin-top: 3px;
+  color: #ffffff9a;
+  font-weight: 700;
+}
 .rightside div:nth-child(1) .graph_Rank > div {
   width: 100%;
   border-radius: 10px 10px 0 0;
@@ -270,7 +284,7 @@ p {
 .rightside div:nth-child(1) .graph_Rank div text {
   z-index: 1;
 }
-.mainPage .middle .roomList li div:nth-child(2) span {
+.mainPage .middle .roomList a div:nth-child(2) span {
   display: none;
 }
 .rank1 {
@@ -279,7 +293,7 @@ p {
 }
 .rank2 {
   height: 150px;
-  background-image: linear-gradient(90deg, #222142 25%, #161a39 90%);
+  background-image: linear-gradient(90deg, #2b274a 35%, #161a39 90%);
 }
 
 .rank3 {
@@ -309,8 +323,8 @@ p {
   height: 60%;
 }
 .graph_Rank img {
-  background: #ffbb47;
-  border-radius: 5px;
+  background: #fff;
+  border-radius: 50px;
 }
 
 /* side bar */
@@ -344,7 +358,8 @@ aside a {
 }
 aside a:first-child {
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  
 }
 aside a .menu {
   display: flex;
@@ -384,11 +399,14 @@ aside a:nth-child(1) .menu {
   .under_1200px {
     display: block !important;
   }
-  .mainPage .middle .roomList li {
+  .mainPage .middle .roomList a {
     width: 46%;
     margin: 2%;
+    text-decoration: none;
+    color: #fff;
+
   }
-  .mainPage .middle .roomList li div:nth-child(1) span {
+  .mainPage .middle .roomList a div:nth-child(1) span {
     font-size: 18px;
   }
   .rightside > div:nth-child(1) {
@@ -413,14 +431,14 @@ aside a:nth-child(1) .menu {
   :root {
     --right_sidebar_width: 0;
   }
-  /* .mainPage .middle .roomList li {
+  /* .mainPage .middle .roomList a {
     width: 85%;
     margin: 15% auto 0% auto;
   }
   .rightside > div:nth-child(1) {
     border-radius: 0;
   } */
-  .mainPage .middle .roomList li div:nth-child(2) {
+  .mainPage .middle .roomList a div:nth-child(2) {
     justify-content: space-between;
   }
   .background {
@@ -438,33 +456,33 @@ aside a:nth-child(1) .menu {
   .mainPage .middle .roomList {
     justify-content: center;
   }
-  .mainPage .middle .roomList li {
+  .mainPage .middle .roomList a {
     width: var(--mobile_layout_width);
     min-width: 280px;
   }
-  .mainPage .middle .roomList li div:nth-child(1) {
+  .mainPage .middle .roomList a div:nth-child(1) {
     display: flex;
     width: 80%;
     flex-direction: row;
     align-items: start;
   }
-  .mainPage .middle .roomList li div:nth-child(1) span {
+  .mainPage .middle .roomList a div:nth-child(1) span {
     display: none;
   }
-  .mainPage .middle .roomList li .list_user_info {
+  .mainPage .middle .roomList a .list_user_info {
     display: flex;
     margin-left: 10%;
     flex-direction: column;
     justify-content: space-between;
   }
-  .mainPage .middle .roomList li .name {
+  .mainPage .middle .roomList a .name {
     margin-top: 20px;
     text-align: left;
   }
-  .mainPage .middle .roomList li .relationship {
+  .mainPage .middle .roomList a .relationship {
     text-align: left;
   }
-  .mainPage .middle .roomList li div:nth-child(2) span {
+  .mainPage .middle .roomList a div:nth-child(2) span {
     display: block;
     font-size: 24px;
     /* color: #df3f7f; */

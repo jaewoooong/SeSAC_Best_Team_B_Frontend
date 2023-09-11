@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader, MarkerF, Marker, InfoWindow } from '@react-google-maps/api';
 import { DataItem } from "../data/data";
 import BoxList from "../First/BoxList";
+import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 const myStyles = [
   {
     featureType: "poi",
@@ -10,8 +12,8 @@ const myStyles = [
   },
 ];
 const containerStyle = {
-  width: '400px',
-  height: '600px'
+  width: '100vw',
+  height: '100vh'
 };
 interface MapProps {
   data: DataItem[]
@@ -24,6 +26,7 @@ const center = {
 const img_src = 'https://picsum.photos/id/237/200/300';
 const zoom = 7;
 function Map({ data }: MapProps) {
+  const { roomId } = useParams(); 
   console.log("Map.tsx", data)
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -40,7 +43,39 @@ function Map({ data }: MapProps) {
     setMap(null)
   }, [])
   return isLoaded ? (
-    <GoogleMap
+    <>
+      <aside style={{background : "#000"}}>
+          <div>
+            <Link to="/">
+              <img src="/Home.png" alt="" />
+              
+            </Link>
+            <Link to={`/map/${roomId}`}>
+              <div className="menu">
+                <img src="/earth.png" alt="" />
+                <span>Map</span>
+              </div>
+            </Link>
+            <Link to={`/timeline/${roomId}`}>
+              <div className="menu">
+                <img src="/Image.png" alt="" />
+                <span>timeline</span>
+              </div>
+            </Link>
+            <Link to="/login">
+              <div className="menu">
+                <img src="/Settings.png" alt="" />
+                <span>login</span>
+              </div>
+            </Link>
+            <div style={{width:"80%" , textAlign:"center", color:"#fff", marginTop:"100px",margin:"20px 10%", background: "rgb(255 255 255 / 15%)", padding:"7px 0", borderRadius:"15px 25px 15px 25px"}}> 
+              <img style={{marginRight:"5px"}} className='/uploadImg.png' src="/upload.png" alt="" width={40} height={40}/>
+              <div>upload</div>
+            </div>
+            <div className="close-button"></div>
+          </div>
+        </aside>
+        <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={zoom}
@@ -48,6 +83,7 @@ function Map({ data }: MapProps) {
       onUnmount={onUnmount}
       options={{ disableDefaultUI: true, styles: myStyles }}
     >
+    
       { /* Child components, such as markers, info windows, etc. */}
       {data?.map((item, index) => (
         item.images.length > 0 && (
@@ -70,6 +106,8 @@ function Map({ data }: MapProps) {
       ))}
       <></>
     </GoogleMap>
+    </>
+  
   ) : <></>
 }
 export default React.memo(Map)

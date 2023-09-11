@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import "./roomform.css";
 import axios from "axios";
-
+import { RoomData } from './Main';
 interface FormState {
   name: string;
   relationship: string;
-  gender: string;
+  genderOrGroup: string;
   slogan: string;
 }
+interface RoomFormProps {
+  setRoom: React.Dispatch<React.SetStateAction<RoomData[] | []>>;
+  room: RoomData[] | []; 
+  setFormDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const RoomForm: React.FC = () => {
+const RoomForm: React.FC<RoomFormProps> = ({setRoom, room, setFormDisplay}) => {
+
   const [formState, setFormState] = useState<FormState>({
     name: "",
     relationship: "친구",
-    gender: "남",
+    genderOrGroup: "남",
     slogan: "",
   });
   console.log(formState);
@@ -29,12 +35,18 @@ const RoomForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(formState)
     if (formState.slogan.length <= 15) {
+
       axios
-        .post("/main", formState)
+        .post("/upload/room", {...formState,genderOrGroup: formState.genderOrGroup+ (Math.floor(Math.random() * 3) + 1)})
         .then((response) => {
           console.log("Response:", response.data);
-          alert("Form Submitted Successfully");
+
+          setRoom(prevRooms => [...(prevRooms ?? []), response.data]);
+          alert("룸 만들기 성공")
+          setFormDisplay(false)
+          console.log("Response:", response.data);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -83,8 +95,8 @@ const RoomForm: React.FC = () => {
         <label>
           성별:
           <select
-            name="gender"
-            value={formState.gender}
+            name="genderOrGroup"
+            value={formState.genderOrGroup}
             onChange={handleChange}
             required
             className="select"

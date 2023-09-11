@@ -36,7 +36,7 @@ function Timeline({ data }: TimelineProps) {
     },
   }));
   return (
-    <div style={{ width: "400px" }}>
+    <div style={{ width: "100%", background: "#eee" }}>
       <Chrono items={transformedData} mode="VERTICAL" />
     </div>
   )

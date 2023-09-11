@@ -6,7 +6,7 @@ import axios from "axios";
 function MapPage() {
   const [data, setData] = useState<DataItem[]>([]);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,8 +28,8 @@ function MapPage() {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div>
+  return ( 
+    <div className="background1" style={{display:"flex", height:"100vh"}}>
       <Map data={data} />
     </div>
   );

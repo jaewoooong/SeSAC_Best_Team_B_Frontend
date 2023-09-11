@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./main.css";
 import { Link } from "react-router-dom";
 import RoomForm from "./RoomForm";
-interface Props {
-  message: string;
-}
+import axios from "axios";
 
+export interface RoomData {
+  roomId: number;
+  name: string;
+  relationship: string;
+  genderOrGroup: string;
+  slogan: string;
+}
 const Main: React.FC = () => {
+  const [room, setRoom] = useState<RoomData[]>([])
+  const [formDisplay, setFormDisplay] = useState<boolean>(false)
+  const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 3) + 1)
+  console.log(room)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/main/room');
+        console.log(response.data)
+        setRoom(response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData()
+  }, [])
+
   return (
+    
     <div className="background">
       <div className="Pagelayout">
         <aside>
@@ -15,27 +38,28 @@ const Main: React.FC = () => {
             <Link to="/">
               <img src="./Home.png" alt="" />
             </Link>
-            <Link to="/map">
+            <Link to="/map/1">
               <div className="menu">
                 <img src="./earth.png" alt="" />
-                <span>settings</span>
+                <span>Map</span>
               </div>
             </Link>
-            <Link to="/timeline">
+            <Link to="/timeline/1">
               <div className="menu">
                 <img src="./Image.png" alt="" />
-                <span>asd</span>
+                <span>timeline</span>
               </div>
             </Link>
             <Link to="/login">
               <div className="menu">
                 <img src="./Settings.png" alt="" />
-                <span>settings</span>
+                <span>login</span>
               </div>
             </Link>
             <div className="close-button"></div>
           </div>
         </aside>
+
 
         <main className="mainPage">
           <div className="middle">
@@ -55,174 +79,37 @@ const Main: React.FC = () => {
                 <img src="./Earth.png" alt="Search" className="search-icon" />
               </div>
               <div className="header_btn_box">
-                <button>룸만들기</button>
+                <button onClick={() => setFormDisplay(prevState => !prevState)}>룸만들기</button>
               </div>
             </header>
             <ul className="roomList">
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>No.1</span>
-                  <div className="list_user_info">
-                    <p className="name">Alias: 김재웅</p>
-                    <p className="relationship">family</p>
-                  </div>
+            {room.map((item , index) => (
+               <Link to={`/timeline/${item.roomId}`} key={item.roomId}>
+             <div>
+               <img className={`img`+(index%3 + 1)} src={`./${item.genderOrGroup}.png`} alt="" />
+               <span>No.{index + 1}</span>
+               <div className="list_user_info">
+                  <p className="name">Alias: {item.name}</p>
+                  <p className="relationship">{item.relationship}</p>
                 </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>#화창#행복#사랑</h4>
-                  <span>Num. 1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img src="./girl1-removebg-preview.png" alt="" />
-                  <span>1</span>
-                  <div className="list_user_info">
-                    <p className="name">Micle</p>
-                    <p className="relationship">family</p>
-                  </div>
-                </div>
-                {/* <h3>추억이 함께</h3> */}
-                <div>
-                  <h4>zhugek asokjdoa</h4>
-                  <span>1</span>
-                </div>
-                <div>
-                  <span>슬로건</span>
-                </div>
-              </li>
+              </div>
+              {/* <h3>추억이 함께</h3> */}
+              <div>
+                <h4>#{item.slogan?.split(' ').join('#')}</h4>
+                <span>Num. {index + 1}</span>
+              </div>
+              <div>
+                <span>{item.slogan}</span>
+              </div>
+         
+               
+             </Link>
+             
+           ))}
+          
             </ul>
           </div>
+          
           <div className="rightside">
             <div>
               <div>
@@ -259,7 +146,7 @@ const Main: React.FC = () => {
                       src="././girl1-removebg-preview.png"
                       alt=""
                     />
-                    <h3>namesdsdssd</h3>
+                    <h3>임재이</h3>
                   </div>
                 </div>
                 <div className="rank1">
@@ -292,7 +179,7 @@ const Main: React.FC = () => {
                       src="././girl1-removebg-preview.png"
                       alt=""
                     />
-                    <h3>namesdsdssd</h3>
+                    <h3>임재이</h3>
                   </div>
                 </div>
                 <div className="rank3">
@@ -418,7 +305,7 @@ const Main: React.FC = () => {
           </div>
         </main>
       </div>
-      <RoomForm />
+    {formDisplay && <RoomForm setRoom={setRoom}  room={room} setFormDisplay={setFormDisplay}/>}  
     </div>
   );
 };

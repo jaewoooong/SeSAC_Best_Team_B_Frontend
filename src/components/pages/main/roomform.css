@@ -7,7 +7,7 @@
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #ca5684;
-  display: none;
+  display: block;
 }
 .formGroup {
   margin-bottom: 15px;
