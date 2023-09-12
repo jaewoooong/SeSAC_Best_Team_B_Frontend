@@ -2,15 +2,15 @@ import Map from './Map';
 import { DataItem } from "../data/data"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { useParams } from 'react-router-dom';
 function MapPage() {
   const [data, setData] = useState<DataItem[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const { roomId } = useParams(); 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/main")
+        const res = await axios.get(`/main/${roomId}`)
         console.log(res.data)
         setData(res.data)
         setLoading(false); // 데이터를 성공적으로 받아왔으므로 로딩 상태 변경
@@ -30,6 +30,7 @@ function MapPage() {
 
   return ( 
     <div className="background1" style={{display:"flex", height:"100vh"}}>
+   
       <Map data={data} />
     </div>
   );

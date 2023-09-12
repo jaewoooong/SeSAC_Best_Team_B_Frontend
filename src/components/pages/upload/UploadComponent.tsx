@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './UploadComponent.css';
+import { useParams } from 'react-router-dom';
 
 const UploadComponent: React.FC = () => {
+    const { roomId } = useParams(); 
+    console.log('roomId', roomId)
     const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
     const [text, setText] = useState<string>("");
 
@@ -23,6 +26,9 @@ const UploadComponent: React.FC = () => {
             formData.append('images', selectedFiles[i]);
         }
         formData.append('text', text);
+        if (roomId !== undefined) {
+            formData.append('roomId', roomId);
+          } 
 
         try {
             const response = await axios.post('/upload', formData);

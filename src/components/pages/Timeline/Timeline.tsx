@@ -1,6 +1,7 @@
 import React from "react"
 import { Chrono } from "react-chrono";
 import { DataItem } from "../data/data";
+import "./timeline.css"
 interface item {
   title: string;
   cardSubtitle: string;

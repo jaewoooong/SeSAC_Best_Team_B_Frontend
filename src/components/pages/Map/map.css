@@ -1,0 +1,30 @@
+
+.gm-style-iw {
+    max-width: 100px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-height: 100px !important;
+    /* padding: 0 !important; */
+    background: #ffffffcb;
+}
+.gm-style-iw-d {
+    max-height: 230px !important;
+    padding: 0 !important;
+}
+.gm-style-iw-d img {
+    width: 100% !important;
+    /* height: 100% !important; */
+}
+.hamburger-menu2 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .hamburger-menu2 {
+        display: block;
+    }
+  }
+  

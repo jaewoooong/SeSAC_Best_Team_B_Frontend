@@ -1,0 +1,23 @@
+.vertical_alternating {
+    width: 400px !important;
+}
+.jROSZr {
+    /* background-color: red !important; */
+}
+.ceHxIo.right,
+.kiSHRt.right {
+  width: 50%;
+}
+.VerticalItemWrapper-sc-1427v1d-1:nth-child(odd) .ceHxIo.right,
+.VerticalItemWrapper-sc-1427v1d-1:nth-child(even) .kiSHRt.right {
+  order: 3;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+}
+.VerticalItemWrapper-sc-1427v1d-1:nth-child(odd) .kiSHRt.right,
+.VerticalItemWrapper-sc-1427v1d-1:nth-child(even) .ceHxIo.right {
+  order: 1;
+}
+.cKVAQn  {
+  background: #5741a5;
+}

@@ -4,6 +4,9 @@ import { DataItem } from "../data/data";
 import BoxList from "../First/BoxList";
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import "./map.css"
+import Aside from "../common/Aside";
+const s3_url = process.env.REACT_APP_S3_URL;
 const myStyles = [
   {
     featureType: "poi",
@@ -44,37 +47,7 @@ function Map({ data }: MapProps) {
   }, [])
   return isLoaded ? (
     <>
-      <aside style={{background : "#000"}}>
-          <div>
-            <Link to="/">
-              <img src="/Home.png" alt="" />
-              
-            </Link>
-            <Link to={`/map/${roomId}`}>
-              <div className="menu">
-                <img src="/earth.png" alt="" />
-                <span>Map</span>
-              </div>
-            </Link>
-            <Link to={`/timeline/${roomId}`}>
-              <div className="menu">
-                <img src="/Image.png" alt="" />
-                <span>timeline</span>
-              </div>
-            </Link>
-            <Link to="/login">
-              <div className="menu">
-                <img src="/Settings.png" alt="" />
-                <span>login</span>
-              </div>
-            </Link>
-            <div style={{width:"80%" , textAlign:"center", color:"#fff", marginTop:"100px",margin:"20px 10%", background: "rgb(255 255 255 / 15%)", padding:"7px 0", borderRadius:"15px 25px 15px 25px"}}> 
-              <img style={{marginRight:"5px"}} className='/uploadImg.png' src="/upload.png" alt="" width={40} height={40}/>
-              <div>upload</div>
-            </div>
-            <div className="close-button"></div>
-          </div>
-        </aside>
+        <Aside />
         <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -97,7 +70,7 @@ function Map({ data }: MapProps) {
           >
             <InfoWindow>
               <div>
-                {item.record.recordValue}
+              <img src={`${s3_url}/${item.images[index].imageName}`} alt="" />
                 <BoxList key={item.record.recordId} images={item.images} record={item.record} />
               </div>
             </InfoWindow>
@@ -106,6 +79,7 @@ function Map({ data }: MapProps) {
       ))}
       <></>
     </GoogleMap>
+
     </>
   
   ) : <></>

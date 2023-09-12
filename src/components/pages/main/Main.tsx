@@ -14,8 +14,13 @@ export interface RoomData {
 const Main: React.FC = () => {
   const [room, setRoom] = useState<RoomData[]>([])
   const [formDisplay, setFormDisplay] = useState<boolean>(false)
-  const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 3) + 1)
+  // const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 3) + 1)
+  const [isAsideVisible, setIsAsideVisible] = useState(false);
   console.log(room)
+  const toggleAside = () => {
+    setIsAsideVisible(!isAsideVisible);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,22 +34,41 @@ const Main: React.FC = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsAsideVisible(true);
+      }
+      if (window.innerWidth <= 768) {
+        setIsAsideVisible(false);
+      }
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+  
+    // 컴포넌트가 언마운트될 때 이벤트 핸들러 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+
   return (
     
     <div className="background">
       <div className="Pagelayout">
-        <aside>
+        <aside className="aside2" style={{ display: isAsideVisible ? 'flex' : 'none' }} >
           <div>
             <Link to="/">
               <img src="./Home.png" alt="" />
             </Link>
-            <Link to="/map/1">
+            <Link to={`/map/${room[0]?.roomId}`}>
               <div className="menu">
                 <img src="./earth.png" alt="" />
                 <span>Map</span>
               </div>
             </Link>
-            <Link to="/timeline/1">
+            <Link to={`/timeline/${room[0]?.roomId}`}>
               <div className="menu">
                 <img src="./Image.png" alt="" />
                 <span>timeline</span>
@@ -56,7 +80,7 @@ const Main: React.FC = () => {
                 <span>login</span>
               </div>
             </Link>
-            <div className="close-button"></div>
+            <div className="close-button" onClick={() => setIsAsideVisible(false)}></div>
           </div>
         </aside>
 
@@ -64,10 +88,12 @@ const Main: React.FC = () => {
         <main className="mainPage">
           <div className="middle">
             <header>
-              <div className="hamburger-menu">
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
+              <div className="hamburger-menu " onClick={toggleAside}>
+              <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+              <rect y="10" width="40" height="4" rx="2" ry="2" fill="white"/>
+              <rect y="20" width="40" height="4" rx="2" ry="2" fill="white"/>
+              <rect y="30" width="40" height="4" rx="2" ry="2" fill="white"/>
+            </svg>
               </div>
               <h2 className="logland">Logland</h2>
               <div className="search-container">
