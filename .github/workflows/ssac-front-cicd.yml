@@ -18,14 +18,6 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2 
       
-    - name: Test
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-    - run: npm ci
-    - run: npm run build . --if-present
-    - run: npm test
-      
     #AWS 인증에 필요한 access key code 입력하는 action, secret 값은 setting에서 환경변수처리
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
