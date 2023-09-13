@@ -1,7 +1,10 @@
 .roomForm {
   position: absolute;
   max-width: 400px;
-  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
   padding: 20px;
   border: 1px solid #ca5684;
   border-radius: 15px;

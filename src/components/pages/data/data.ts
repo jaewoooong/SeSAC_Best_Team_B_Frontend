@@ -8,7 +8,7 @@ export interface Image {
   GPSLatitude: number;
   GPSLongitude: number;
   CreateDate: string; // 날짜 문자열 형식이라면 Date 타입으로 변환하는 것이 좋을 수 있습니다.
-  // id:number;
+  // id: number;
 }
 
 export interface DataItem {

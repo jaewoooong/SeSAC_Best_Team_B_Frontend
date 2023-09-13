@@ -17,8 +17,7 @@ axios.defaults.withCredentials = true;
 function App() {
   const [uploadState, setUploadState] = useState<boolean>(false);
   return (
-  
-  <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         {/* 첫 페이지 */}
         {/* <Route path="/" element={<MainPage />} /> */}
@@ -34,8 +33,6 @@ function App() {
       {/* <Footer setUploadState={setUploadState} />
       {uploadState && <UploadComponent />} */}
     </BrowserRouter>
-   
-    
   );
 }
 export default App;
