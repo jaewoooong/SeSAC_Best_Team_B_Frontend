@@ -24,8 +24,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
-    - run: npm ci
-    - run: npm run build --if-present
     - run: npm test
       
     #AWS 인증에 필요한 access key code 입력하는 action, secret 값은 setting에서 환경변수처리
