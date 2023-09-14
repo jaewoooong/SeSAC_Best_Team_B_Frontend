@@ -96,7 +96,7 @@ const MarkerComponent = React.memo(
             onClick={() => handleMarkerClick(index, img)}
             clusterer={clusterer}
             icon={{
-              url: `process.env.REACT_APP_GOOGLE_MAP_API_KEY/${img.imageName}`,
+              url: `${s3_url}/${img.imageName}`,
               scaledSize: new google.maps.Size(imageSize, imageSize),
             }}
           >
