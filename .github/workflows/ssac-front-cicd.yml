@@ -11,6 +11,11 @@ jobs:
     # ubuntu에서 실행
     name: Build Image
     runs-on: ubuntu-latest 
+    env:    
+      REACT_APP_GOOGLE_MAP_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}
+      REACT_APP_S3_URL: ${{ secrets.REACT_APP_S3_URL }}
+      REACT_APP_BACKEND: ${{ secrets.REACT_APP_BACKEND }}
+      ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
    
     steps:
@@ -46,11 +51,11 @@ jobs:
         echo "REACT_APP_S3_URL=$REACT_APP_S3_URL" >> .env
         echo "REACT_APP_BACKEND=$REACT_APP_BACKEND" >> .env
         echo "ECR_REGISTRY" >> .env
-      env:
-        REACT_APP_GOOGLE_MAP_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}
-        REACT_APP_S3_URL: ${{ secrets.REACT_APP_S3_URL }}
-        REACT_APP_BACKEND: ${{ secrets.REACT_APP_BACKEND }}
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    #  env:
+    #    REACT_APP_GOOGLE_MAP_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}
+    #    REACT_APP_S3_URL: ${{ secrets.REACT_APP_S3_URL }}
+    #    REACT_APP_BACKEND: ${{ secrets.REACT_APP_BACKEND }}
+    #    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
    # 이미지 빌드 후 ecr push
    # env 값으로 ECR의 registry, repository, Imagetag 추가
