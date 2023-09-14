@@ -51,7 +51,7 @@ jobs:
    # 실습 시 repository 변경
     - name: Build, tag, and push image to Amazon ECR
       env:
-        #ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ssac-front 
         IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
       run: | 
