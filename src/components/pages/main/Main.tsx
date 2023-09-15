@@ -64,7 +64,7 @@ const Main: React.FC = () => {
             </Link>
             <Link to={`/map/${room[0]?.roomId}`}>
               <div className="menu">
-                <img src="./earth.png" alt="" />
+                <img src="./Earth.png" alt="" />
                 <span>Map</span>
               </div>
             </Link>
