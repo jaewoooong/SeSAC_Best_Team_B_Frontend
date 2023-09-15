@@ -41,10 +41,11 @@ const UploadComponent: React.FC<setDataProps> = ({
       const response = await axios.post("/upload", formData);
       console.log("Upload success:", response.data);
       setData((prevData) => [...prevData, response.data]);
-      alert("업로드 성공");
+      response.data.record ? alert("업로드 성공") : alert(response.data.message);
       setIsUploadComponentVisible(false);
     } catch (error) {
       console.error("Error uploading:", error);
+      alert("메타데이터가 없습니다.")
     }
   };
 
@@ -66,8 +67,9 @@ const UploadComponent: React.FC<setDataProps> = ({
           multiple
           onChange={handleFileChange}
           accept=".jpg,jpeg, .heic"
+          required
         />
-        <textarea onChange={handleTextChange} value={text}></textarea>
+        <textarea onChange={handleTextChange} value={text} required></textarea>
         <button type="submit">Upload</button>
       </form>
     </div>
