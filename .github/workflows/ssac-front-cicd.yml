@@ -2,9 +2,8 @@
 name: ssac-front 
 
 # bracnch main push 감지 시 실행
-on:  
-  push:
-    branches: [ main, pull_request_targe ]
+on: [push, pull_request_target]
+    branches: [ main ]
 
 jobs:
   cicd:   
