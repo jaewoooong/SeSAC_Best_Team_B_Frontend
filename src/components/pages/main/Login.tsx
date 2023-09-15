@@ -3,7 +3,7 @@ import axios from "axios";
 import "./login.css";
 
 const LoginPage: React.FC = () => {
-  const loginUrl = "http://localhost:5000/auth/kakao";
+  const loginUrl = "/auth/kakao";
 
   return (
     <div className="background">
@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
             Let's get you
             <br /> signed in!
           </h2>
-          <a href={loginUrl} className="kakao-login-button">
+          <a href={`${process.env.REACT_APP_BACKEND}/auth/kakao`} className="kakao-login-button">
             <img
               src="kakao.png"
               width={25}

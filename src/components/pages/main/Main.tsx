@@ -202,7 +202,7 @@ const Main: React.FC = () => {
                     <img
                       width={40}
                       height={40}
-                      src="././girl1-removebg-preview.png"
+                      src="/남1.png"
                       alt=""
                     />
                     <h3>임재이</h3>
@@ -235,7 +235,7 @@ const Main: React.FC = () => {
                     <img
                       width={40}
                       height={40}
-                      src="././girl1-removebg-preview.png"
+                      src="/남2.png"
                       alt=""
                     />
                     <h3>assd</h3>
