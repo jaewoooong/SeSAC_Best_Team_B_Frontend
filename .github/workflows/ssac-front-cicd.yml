@@ -56,7 +56,7 @@ jobs:
         ECR_REPOSITORY: ssac-front 
         IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
       run: | 
-        echo "REACT_APP_GOOGLE_MAP_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}" >> .env
+        #echo "REACT_APP_GOOGLE_MAP_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}" >> .env
         echo "REACT_APP_S3_URL=${{ secrets.REACT_APP_S3_URL }}" >> .env
         echo "REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }}" >> .env
         cat .env
