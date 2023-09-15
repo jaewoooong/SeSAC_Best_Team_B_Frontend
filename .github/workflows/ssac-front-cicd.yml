@@ -1,4 +1,4 @@
-name: ssac-back #
+name: ssac-front #
 
 on:
   push:
