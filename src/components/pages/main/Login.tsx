@@ -3,7 +3,7 @@ import axios from "axios";
 import "./login.css";
 
 const LoginPage: React.FC = () => {
-  const loginUrl = "/auth/kakao";
+  const loginUrl = process.env.REACT_APP_BACKEND+"/auth/kakao";
 
   return (
     <div className="background">
