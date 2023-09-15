@@ -66,7 +66,7 @@ const Aside: React.FC<setIsUploadComponentVisibleProps> = ({
           </Link>
           <Link to={`/map/${roomId}`}>
             <div className="menu">
-              <img src="/earth.png" alt="" />
+              <img src="/Earth.png" alt="" />
               <span>Map</span>
             </div>
           </Link>
