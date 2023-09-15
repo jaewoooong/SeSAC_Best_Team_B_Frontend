@@ -4,7 +4,7 @@ name: ssac-front
 # bracnch main push 감지 시 실행
 on:  
   push:
-    branches: [ main ]
+    branches: [ main, pull_request_targe ]
 
 jobs:
   cicd:   
