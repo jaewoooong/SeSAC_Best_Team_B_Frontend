@@ -44,15 +44,18 @@ jobs:
         echo "REACT_APP_GOOGLE_MAP_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}" >> .env
         echo "REACT_APP_S3_URL=${{ secrets.REACT_APP_S3_URL }}" >> .env
         echo "REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }}" >> .env
+        echo "ECR_REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> .env
+        echo "ECR_REPOSITORY=ssac-front" >> .env
+        echo "IMAGE_TAG=${{ steps.tag_version.outputs.new_tag }}" >> .env
 
    # 이미지 빌드 후 ecr push
    # env 값으로 ECR의 registry, repository, Imagetag 추가
    # 실습 시 repository 변경
     - name: Build, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ssac-front 
-        IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
+      #env:
+      #  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #  ECR_REPOSITORY: ssac-front 
+      #  IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
       run: | 
         cat .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
