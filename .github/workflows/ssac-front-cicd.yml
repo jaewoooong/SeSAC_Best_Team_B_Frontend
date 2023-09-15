@@ -41,9 +41,9 @@ jobs:
    #DB .env secret add  TEST
     - name: Generate Environment Variables File 
       run: |
-        echo "REACT_APP_GOOGLE_MAP_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}" >> $GITHUB_ENV
-        echo "REACT_APP_S3_URL=${{ secrets.REACT_APP_S3_URL }}" >> $GITHUB_ENV
-        echo "REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }}" >> $GITHUB_ENV
+        echo "REACT_APP_GOOGLE_MAP_API_KEY=${{ secrets.REACT_APP_GOOGLE_MAP_API_KEY }}" >> .env
+        echo "REACT_APP_S3_URL=${{ secrets.REACT_APP_S3_URL }}" >> .env
+        echo "REACT_APP_BACKEND=${{ secrets.REACT_APP_BACKEND }}" >> .env
 
    # 이미지 빌드 후 ecr push
    # env 값으로 ECR의 registry, repository, Imagetag 추가
@@ -54,6 +54,7 @@ jobs:
         ECR_REPOSITORY: ssac-front 
         IMAGE_TAG: ${{ steps.tag_version.outputs.new_tag }}
       run: | 
+        cat .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
