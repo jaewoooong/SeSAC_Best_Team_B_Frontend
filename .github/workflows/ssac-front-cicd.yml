@@ -1,9 +1,10 @@
-#frontend repositoy1 
-name: ssac-front 
-
-# bracnch main push 감지 시 실행
-on: [push, pull_request_target]
-    branches: [ main ]
+on:
+  push:
+    branches:
+      - main
+  pull_request_target:
+    branches:
+      - main
 
 jobs:
   cicd:   
