@@ -1,7 +1,7 @@
-name: ssac-front #1
+name: ssac-front
 
 on:
-  push:
+  pull_request_target:
     branches:
       - main
 
