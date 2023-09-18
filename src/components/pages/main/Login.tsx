@@ -37,8 +37,7 @@ const LoginPage: React.FC = () => {
             <div>google Login</div>
           </a>
         </div>
-        <img src="./loginBg.png" alt="" />  #loginBg.png -> loginBG.png
-      </div>
+        <img src="./loginBG.png" alt="" />
     </div>
   );
 };
